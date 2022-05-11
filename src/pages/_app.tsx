@@ -1,12 +1,14 @@
 import '../styles/globals.css'
-import Head from '../components/Layout/Head'
 import type { AppProps } from 'next/app'
+
+import Head from '../components/Layout/Head'
+import Container from '../components/Layout/ViewContainer'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head />
-      <Component {...pageProps} />
+      <Container><Component {...pageProps} /></Container>
     </>
   )
 }
