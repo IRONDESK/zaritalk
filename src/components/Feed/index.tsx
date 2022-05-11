@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
+import ScrollContainer from "react-indiana-drag-scroll";
+
 import { COLOR } from '../../constants';
 import { ItemList } from './ItemList';
 
@@ -14,6 +16,7 @@ export const Feed = () => {
     return (
         <>
         <Category onClick={SelectCategory}>
+            <ScrollContainer vertical={false}>
             <Li id="all" selected={selected == "all" ? true : false}>전체</Li>
             <Li id="best" selected={selected == "best" ? true : false}>⭐인기글</Li>
             <Li id="petition" selected={selected == "petition" ? true : false}>대선청원</Li>
@@ -21,6 +24,7 @@ export const Feed = () => {
             <Li id="qna" selected={selected == "qna" ? true : false}>질문/답변</Li>
             <Li id="news" selected={selected == "news" ? true : false}>뉴스</Li>
             <Li id="tip" selected={selected == "tip" ? true : false}>노하우</Li>
+            </ScrollContainer>
         </Category>
         <ItemList />
         </>
@@ -28,13 +32,13 @@ export const Feed = () => {
 };
 
 const Category = styled.ul`
-    width: 80vh;
     margin: 20px 0 0 30px;
+    white-space: nowrap;
 `;
 const Li = styled.li<{selected: Boolean}>`
-    margin-right: 4px;
     cursor: pointer;
     display: inline-block;
+    margin-right: 4px;
     padding: 12px 16px;
     background-color: ${(props) => props.selected ? COLOR.main : "none"};
     font-weight: 500;
