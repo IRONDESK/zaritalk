@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import ScrollContainer from "react-indiana-drag-scroll";
 
 import { COLOR } from '../../constants';
@@ -27,6 +28,9 @@ export const Feed = () => {
             </ScrollContainer>
         </Category>
         <ItemList />
+        <WriteBtn>
+            <Link href="/write">글쓰기✍️</Link>
+        </WriteBtn>
         </>
     );
 };
@@ -45,6 +49,21 @@ const Li = styled.li<{selected: Boolean}>`
     color: ${(props) => props.selected ? "#fff" : "#7A7A7A"};
     border-radius: 20px;
     border: ${(props) => props.selected ? "none" : "1px solid " + COLOR.gray};
+`;
+
+const WriteBtn  = styled.div`
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    text-align: right;
+    a {
+        padding: 12px 8px;
+        font-size: 16px;
+        font-weight: 700;
+        background-color: ${COLOR.main};
+        color: ${COLOR.white};
+        border-radius: 8px;
+    }
 `;
 
 export default Feed;
