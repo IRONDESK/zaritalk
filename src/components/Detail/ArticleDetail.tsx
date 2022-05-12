@@ -9,6 +9,24 @@ export const ArticleDetail = ({
 }: MemberData) => {
     const [ImgPosition, setImgPosition] = useState<number>(0);
 
+    const convertLocalDate = (value: string) => {
+        const now: Date = new Date();
+        const target: Date = new Date(value);
+        const timeDiff = (+now -+target)/(1000*60); // 분 단위 시간차
+    
+        if (timeDiff < 1) {
+            return "방금 전";
+        } else if (timeDiff < 60) {
+            return Math.floor(timeDiff)+"분 전";
+        } else if (timeDiff < 60 * 24) { 
+            return Math.floor(timeDiff/60)+"시간 전";
+        } else if (timeDiff < 60 * 24 * 3) {
+            return Math.floor(timeDiff/(60*24))+"일 전";
+        } else {
+            return target.toLocaleString();
+        }
+    };
+
     const ImgMove = (e: React.MouseEvent<HTMLSpanElement>) => {
         const target = e.target as HTMLSpanElement;
         setImgPosition(Number(target.dataset.order) * -360);
@@ -19,7 +37,7 @@ export const ArticleDetail = ({
             <Info>
                 <Avatar src={writerProfileUrl} />
                 <NickName>{writerNickName}</NickName>
-                <SubInfo>{categoryName} • {writtenAt}</SubInfo>
+                <SubInfo>{categoryName} • {convertLocalDate(writtenAt)}</SubInfo>
             </Info>
             <Article>
                 <Title>{title}</Title>
