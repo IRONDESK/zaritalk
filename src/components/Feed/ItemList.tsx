@@ -36,7 +36,7 @@ export const ItemList = () => {
     );
 };
 
-const Container = styled.section`
+const Container = styled.main`
     padding-bottom: 120px;
     height: 100%;
     background-color: #E8E8E8;
