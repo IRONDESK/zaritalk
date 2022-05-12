@@ -7,7 +7,12 @@ export const ArticleDetail = ({
     categoryPk, categoryName, pk, title, content, viewCount,
     likeCount, commentCount, imageUrl, writtenAt, writerNickName, writerProfileUrl,
 }: MemberData) => {
+    const [ImgPosition, setImgPosition] = useState<number>(0);
 
+    const ImgMove = (e: React.MouseEvent<HTMLSpanElement>) => {
+        const target = e.target as HTMLSpanElement;
+        setImgPosition(Number(target.dataset.order) * -360);
+    };
     return (
     <Container>
         <Wrap>
@@ -20,12 +25,19 @@ export const ArticleDetail = ({
                 <Title>{title}</Title>
                 <Content>{content}</Content>
                 <ImageWrap>
-                <Images>
+                <Images move={ImgPosition}>
                 { imageUrl.map((el) => 
                     (<img src={el} />)
                 )}
                 </Images>
-
+                <ImagePositon now={(ImgPosition/-360) + 1}>
+                { imageUrl.length > 1 ?
+                    (imageUrl.map((v, i) => (
+                        <span onClick={ImgMove} data-order={i}></span>
+                    ))) :
+                    null
+                }
+                </ImagePositon>
                 </ImageWrap>
             </Article>
             <CountWrap>
@@ -91,10 +103,10 @@ const ImageWrap = styled.div`
     position: relative;
     margin: 0 -26px;
     `;
-const Images = styled.div`
+const Images = styled.div<{move: number}>`
     height: 200px;
     white-space: nowrap;
-
+    transform: ${(props) => 'translateX(' + props.move + 'px)'};
     transition: .5s all;
     img {
         width: 360px;
@@ -102,7 +114,31 @@ const Images = styled.div`
         object-fit: cover;
     }
 `;
-
+const ImagePositon = styled.div<{now: number}>`
+    position: absolute;
+    padding: 3px;
+    left: 50%;
+    bottom: 13px;
+    transform: translateX(-50%);
+    span {
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 4px;
+        width: 11px;
+        height: 11px;
+        background-color: #fff;
+        border-radius: 100%;
+        ${(props) => "&:nth-child(" + props.now + ")"} {
+            background-color: ${COLOR.main};
+        }
+    }
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        box-sizing: border-box;
+        transition: .5s all;
+    }
+`;
 
 const CountWrap = styled.div`
     display: flex;
