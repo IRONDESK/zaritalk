@@ -7,7 +7,7 @@ import { COLOR } from '../../constants';
 import { ItemList } from './ItemList';
 
 export const Feed = () => {
-    const [selected, setSelected] = useState("all")
+    const [selected, setSelected] = useState("ALL")
     const SelectCategory = (e: React.MouseEvent<HTMLElement>) => {
         const target = e.target as HTMLElement;
         if (target.id) {
@@ -18,16 +18,16 @@ export const Feed = () => {
         <>
         <Category onClick={SelectCategory}>
             <ScrollContainer vertical={false}>
-            <Li id="all" selected={selected == "all" ? true : false}>전체</Li>
-            <Li id="best" selected={selected == "best" ? true : false}>⭐인기글</Li>
-            <Li id="petition" selected={selected == "petition" ? true : false}>대선청원</Li>
-            <Li id="free" selected={selected == "free" ? true : false}>자유글</Li>
-            <Li id="qna" selected={selected == "qna" ? true : false}>질문/답변</Li>
-            <Li id="news" selected={selected == "news" ? true : false}>뉴스</Li>
-            <Li id="tip" selected={selected == "tip" ? true : false}>노하우</Li>
+            <Li id="ALL" selected={selected == "ALL" ? true : false}>전체</Li>
+            <Li id="BEST" selected={selected == "BEST" ? true : false}>⭐인기글</Li>
+            <Li id="PETITION" selected={selected == "PETITION" ? true : false}>대선청원</Li>
+            <Li id="FREE" selected={selected == "FREE" ? true : false}>자유글</Li>
+            <Li id="QNA" selected={selected == "QNA" ? true : false}>질문/답변</Li>
+            <Li id="NEWS" selected={selected == "NEWS" ? true : false}>뉴스</Li>
+            <Li id="TIP" selected={selected == "TIP" ? true : false}>노하우</Li>
             </ScrollContainer>
         </Category>
-        <ItemList />
+        <ItemList selected={selected} />
         <WriteBtn>
             <Link href="post/new">글쓰기✍️</Link>
         </WriteBtn>

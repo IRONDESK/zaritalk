@@ -34,7 +34,11 @@ export const Item = ({
             <Article>
                 <Title>{title}</Title>
                 <Content>{content}</Content>
-                <ImgWrap text={imageUrl.length-1}><Image src={imageUrl[0]}/></ImgWrap>
+                { imageUrl ? (
+                <ImgWrap text={ typeof(imageUrl) !== "string" ? imageUrl.length-1 : 0 }>
+                    <Image src={ typeof(imageUrl) !== "string" ? imageUrl[0] : imageUrl }/>
+                </ImgWrap>
+                ) : null }
             </Article>
             <CountWrap>
                 <Count icon="eye">{viewCount}</Count>
