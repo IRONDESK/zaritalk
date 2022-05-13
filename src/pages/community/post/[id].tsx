@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { PageHeader } from "../../components/Layout/PageHeader";
-import { ArticleDetail } from "../../components/Detail/ArticleDetail"
+import { PageHeader } from "../../../components/Layout/PageHeader";
+import { ArticleDetail } from "../../../components/Detail/ArticleDetail"
 
 export default function Detail() {
     const router = useRouter();
-    const [location, query] = router.asPath.split("/").splice(1);
+    // const [location, query] = router.asPath.split("/").splice(1);
 
     return (
     <>

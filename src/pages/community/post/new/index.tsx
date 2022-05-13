@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 
-import { PageHeader } from "../../components/Layout/PageHeader";
-import { COLOR } from "../../constants";
+import { PageHeader } from "../../../../components/Layout/PageHeader";
+import { COLOR } from "../../../../constants";
 
 export default function Write() {
     const [files, setFiles] = useState<string[]>([]);

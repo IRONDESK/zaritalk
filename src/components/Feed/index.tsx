@@ -29,7 +29,7 @@ export const Feed = () => {
         </Category>
         <ItemList />
         <WriteBtn>
-            <Link href="/write">글쓰기✍️</Link>
+            <Link href="post/new">글쓰기✍️</Link>
         </WriteBtn>
         </>
     );

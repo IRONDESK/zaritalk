@@ -1,22 +1,15 @@
 import type { NextPage } from 'next'
-import styled from '@emotion/styled';
-
-import Feed from '../components/Feed';
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
-  return (
+    const router= useRouter();
+    router.push('/community/list');
+
+    return (
     <>
-      <Title>커뮤니티</Title>
-      <Feed />
+    <p>Redirect...</p>
     </>
-  )
+    )
 }
-
-const Title = styled.h1`
-  margin: 34px 0 0 30px;
-  font-size: 22px;
-  font-weight: 700;
-`;
-
 
 export default Home

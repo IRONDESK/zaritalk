@@ -9,14 +9,15 @@ interface PropsType {
 
 export const PageHeader = ( { submit }: PropsType ) => {
     const router = useRouter();
-    const [location, query] = router.asPath.split("/").splice(1);
+    const [location, query] = router.asPath.split("/").splice(2);
+    console.log(location, query)
     return (
         <Container>
             <Back>
                 <Link href="/"><img src='/images/icon/back.svg'/></Link>
-                {location == "write" ? null : "글 목록으로"}
+                {query == "new" ? null : "글 목록으로"}
             </Back>
-            {location == "write" ? (
+            {query == "new" ? (
             <>
                 <Center>글쓰기</Center>
                 <Right>
