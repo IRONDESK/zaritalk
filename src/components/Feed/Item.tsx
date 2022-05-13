@@ -1,4 +1,7 @@
 import styled from "@emotion/styled";
+import Link from 'next/link';
+import { COLOR } from '../../constants'
+
 import { MemberData } from "../../types/Article"
 
 export const Item = ({
@@ -44,6 +47,7 @@ export const Item = ({
                 <Count icon="eye">{viewCount}</Count>
                 <Count icon="like-thumb">{likeCount}</Count>
                 <Count icon="talk">{commentCount}</Count>
+                <Link href={"post/" + pk}>글보기</Link>
             </CountWrap>
         </Wrap>
     </Container>
@@ -126,7 +130,19 @@ const Image = styled.img`
     border-radius: 10px;
 `;
 
-const CountWrap = styled.ul``;
+const CountWrap = styled.ul`
+    a {
+        float: right;
+        padding: 3px 4px;
+        background-color: ${COLOR.main};
+        color: ${COLOR.white};
+        font-size: 13px;
+        border-radius: 4px;
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+`;
 const Count = styled.li<{icon: string}>`
     position: relative;
     display: inline-block;
