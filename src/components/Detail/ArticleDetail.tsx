@@ -42,21 +42,30 @@ export const ArticleDetail = ({
             <Article>
                 <Title>{title}</Title>
                 <Content>{content}</Content>
-                <ImageWrap>
-                <Images move={ImgPosition}>
-                { imageUrl.map((el) => 
-                    (<img src={el} />)
-                )}
-                </Images>
-                <ImagePositon now={(ImgPosition/-360) + 1}>
-                { imageUrl.length > 1 ?
-                    (imageUrl.map((v, i) => (
-                        <span onClick={ImgMove} data-order={i}></span>
-                    ))) :
-                    null
+                {
+                imageUrl ? (
+                    <ImageWrap>
+                    <Images move={ImgPosition}>
+                    { typeof(imageUrl) !== "string" ? (
+                        imageUrl.map((el) => 
+                        (<img src={el} />)
+                    )
+                    ) : <img src={imageUrl} /> }
+                    </Images>
+                    <ImagePositon now={(ImgPosition/-360) + 1}>
+                    { typeof(imageUrl) !== "string" && imageUrl.length > 1 ?
+                        (imageUrl.map((v, i) => (
+                            <span
+                                onClick={ImgMove}
+                                data-order={i}
+                            ></span>
+                        ))) :
+                        null
+                    }
+                    </ImagePositon>
+                    </ImageWrap>
+                ) : null
                 }
-                </ImagePositon>
-                </ImageWrap>
             </Article>
             <CountWrap>
                 <Count>
