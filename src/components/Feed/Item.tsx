@@ -134,12 +134,12 @@ const CountWrap = styled.ul`
     a {
         float: right;
         padding: 3px 4px;
-        background-color: ${COLOR.main};
-        color: ${COLOR.white};
+        border: 1px solid ${COLOR.main};
+        color: ${COLOR.main};
         font-size: 13px;
         border-radius: 4px;
         &:hover {
-            opacity: 0.5;
+            font-weight: 700;
         }
     }
 `;
