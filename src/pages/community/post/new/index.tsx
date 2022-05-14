@@ -56,7 +56,7 @@ export default function Write() {
             viewCount: 0,
             likeCount: 0,
             commentCount: 0,
-            imageUrl: files,
+            imageUrl: files.length > 0 ? files : null,
             writtenAt: now.toISOString().split(".")[0],
             writerNickName: '글쓴이',
             writerProfileUrl: 'https://static.zaritalk.com/profiles/profile-48-img-man-39-39.png',
