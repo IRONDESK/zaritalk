@@ -16,6 +16,7 @@ export const ArticleDetail = ({
         const now: Date = new Date();
         const target: Date = new Date(value);
         const timeDiff = (+now -+target)/(1000*60); // 분 단위 시간차
+        const [year, month, day, time] = target.toLocaleString().split(".");
     
         if (timeDiff < 1) {
             return "방금 전";
@@ -26,7 +27,7 @@ export const ArticleDetail = ({
         } else if (timeDiff < 60 * 24 * 3) {
             return Math.floor(timeDiff/(60*24))+"일 전";
         } else {
-            return target.toLocaleString();
+            return year+"년 "+month+"월 "+day+"일 "+time;
         }
     };
 
