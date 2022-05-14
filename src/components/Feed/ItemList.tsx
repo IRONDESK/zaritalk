@@ -8,19 +8,19 @@ interface propsType {
 }
 
 const categoryType:any = {
-    PETITION : "?categorypk=1",
-    FREE: "?categorypk=2",
-    QNA: "?categorypk=3",
-    NEWS: "?categorypk=4",
-    TIP: "?categorypk=5",
-    BEST: "?viewCount_gte=100",
+    PETITION : "&categorypk=1",
+    FREE: "&categorypk=2",
+    QNA: "&categorypk=3",
+    NEWS: "&categorypk=4",
+    TIP: "&categorypk=5",
+    BEST: "&viewCount_gte=100",
     ALL: "",
 }
 
 export const ItemList = ({ selected }: propsType) => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        axios.get("http://localhost:8080/postdb" + categoryType[selected])
+        axios.get("http://localhost:8080/postdb?_sort=writtenAt&_order=desc" + categoryType[selected])
         .then(res => {
             setPosts(res.data);
         })
@@ -31,7 +31,7 @@ export const ItemList = ({ selected }: propsType) => {
             {
             posts.map( (ele: any) => (
             <Item
-                key={"item"+ele.id}
+                key={"item" + ele.id}
                 categoryPk = {ele.categoryPk}
                 categoryName = {ele.categoryName}
                 id = {ele.id}
