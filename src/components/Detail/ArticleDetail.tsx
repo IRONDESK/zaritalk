@@ -102,10 +102,18 @@ export const ArticleDetail = ({
 const Container = styled.article`
     margin-bottom: 8px;
     padding: 26px 0;
+    height: 100%;
     background-color: #fff;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 const Wrap = styled.article`
     margin: 0 26px;
+    padding: 0 0 30px 0;
 `;
 
 const Info = styled.div`
