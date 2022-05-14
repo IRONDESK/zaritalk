@@ -4,7 +4,7 @@ import { COLOR } from "../../constants";
 import { MemberData } from "../../types/Article"
 
 export const ArticleDetail = ({
-    categoryPk, categoryName, pk, title, content, viewCount,
+    categoryPk, categoryName, id, title, content, viewCount,
     likeCount, commentCount, imageUrl, writtenAt, writerNickName, writerProfileUrl,
 }: MemberData) => {
     const [ImgPosition, setImgPosition] = useState<number>(0);

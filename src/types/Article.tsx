@@ -1,7 +1,7 @@
 export interface MemberData {
     categoryPk: number,
     categoryName: string,
-    pk: number,
+    id: number,
     title: string,
     content: string,
     viewCount: number,

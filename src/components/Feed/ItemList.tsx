@@ -33,7 +33,7 @@ export const ItemList = ({ selected }: propsType) => {
             <Item
                 categoryPk = {ele.categoryPk}
                 categoryName = {ele.categoryName}
-                pk = {ele.pk}
+                id = {ele.id}
                 title = {ele.title}
                 content = {ele.content}
                 viewCount = {ele.viewCount}

@@ -5,7 +5,7 @@ import { COLOR } from '../../constants'
 import { MemberData } from "../../types/Article"
 
 export const Item = ({
-    categoryPk, categoryName, pk, title, content, viewCount,
+    categoryPk, categoryName, id, title, content, viewCount,
     likeCount, commentCount, imageUrl, writtenAt, writerNickName, writerProfileUrl,
 }: MemberData) => {
     const convertLocalDate = (value: string) => {
@@ -47,7 +47,7 @@ export const Item = ({
                 <Count icon="eye">{viewCount}</Count>
                 <Count icon="like-thumb">{likeCount}</Count>
                 <Count icon="talk">{commentCount}</Count>
-                <Link href={"post/" + pk}>글보기</Link>
+                <Link href={"post/" + id}>글보기</Link>
             </CountWrap>
         </Wrap>
     </Container>

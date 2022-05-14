@@ -11,7 +11,7 @@ export default function Detail() {
     const [location, query] = router.asPath.split("/").splice(2);
     
     useEffect(() => {
-        axios.get("http://localhost:8080/postdb?pk=" + query)
+        axios.get("http://localhost:8080/postdb/" + query)
         .then(res => {
             setPost(res.data[0]);
         })
@@ -23,7 +23,7 @@ export default function Detail() {
         <ArticleDetail 
         categoryPk = {post?.categoryPk}
         categoryName = {post?.categoryName}
-        pk = {post?.pk}
+        id = {post?.id}
         title = {post?.title}
         content = {post?.content}
         viewCount = {post?.viewCount}
