@@ -11,4 +11,15 @@ export interface MemberData {
     writtenAt: string,
     writerNickName: string,
     writerProfileUrl: string,
+};
+
+export interface FormData {
+    category: string,
+    setCategory: React.Dispatch<React.SetStateAction<string>>,
+    title: string,
+    setTitle: React.Dispatch<React.SetStateAction<string>>,
+    content: string,
+    setContent: React.Dispatch<React.SetStateAction<string>>,
+    files: string[],
+    setFiles: React.Dispatch<React.SetStateAction<string[]>>,
 }  

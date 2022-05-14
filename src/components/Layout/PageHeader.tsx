@@ -83,3 +83,5 @@ const WriteSubmit = styled.button<{hasData: boolean|undefined}>`
     border-radius: 8px;
     opacity: ${(props) => props.hasData ? 1 : 0.3};
 `;
+
+export default PageHeader;

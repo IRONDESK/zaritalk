@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import axios from "axios";
 import ScrollContainer from "react-indiana-drag-scroll";
 
-import { PageHeader } from "../../../../components/Layout/PageHeader";
+import PageHeader from "../../../../components/Layout/PageHeader";
+import WriteForm from "../../../../components/Write/WriteForm";
 import { COLOR } from "../../../../constants";
 
 const categoryType:any = {
@@ -71,59 +72,16 @@ export default function Write() {
             encType="multipart/form-data"
             onSubmit={onSubmitPost}>
         <PageHeader hasData={hasData} />
-            <Select
-                name="category"
-                onChange={(e) => {setCategory(e.target.value)}}
-                value={category}
-            >
-                <option value="PETITION">대선청원</option>
-                <option value="FREE">자유글</option>
-                <option value="QNA">질문/답변</option>
-                <option value="NEWS">뉴스</option>
-                <option value="TIP">노하우</option>
-            </Select>
-            <label className="a11y-hidden" htmlFor="title">제목</label>
-            <TitleInput
-                type="text"
-                id="title"
-                onChange={(e) => {setTitle(e.target.value)}}
-                value={title}
-                placeholder="제목을 작성해주세요."
-            />
-            <label className="a11y-hidden" htmlFor="contents">내용</label>
-            <Textarea
-                id="contents"
-                onChange={(e) => {setContent(e.target.value)}}
-                value={content}
-                placeholder="내용을 작성해주세요.
-                &#13;&#10;◎ 사진 및 외부 콘텐츠 첨부시 영향력 상승!
-                &#13;&#10;◎ 뉴스, 블로그 등 외부 콘텐츠는 https:// 링크를 붙여 넣으세요. 본문에 썸네일로 표시됩니다.◎ 광고글 금지. 서비스 이용이 제한됩니다.
-            "></Textarea>
-            <ImgWrap>
-                <ImgPreviewWrap>
-                    <ScrollContainer vertical={false}>
-                        {files.map((value, index) => 
-                            <ImageContainer key={"img" + index}>
-                            <img src={value} />
-                            <button
-                                type="button"
-                                onClick={() => DeleteFile(index)}
-                            />
-                            </ImageContainer>
-                        )}
-                    </ScrollContainer>
-                </ImgPreviewWrap>
-                <ImgUpload htmlFor="img">
-                    <span>사진({files.length}/6)</span>
-                </ImgUpload>
-            </ImgWrap>
-            <input
-                className="a11y-hidden"
-                type="file"
-                accept="img/*"
-                id="img"
-                onChange={onLoadFile}
-            />
+        <WriteForm
+            category={category}
+            setCategory={setCategory}
+            title={title}
+            setTitle={setTitle}
+            content={content}
+            setContent={setContent}
+            files={files}
+            setFiles={setFiles}
+        />
         </Form> 
     </>
     );
