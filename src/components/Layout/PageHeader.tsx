@@ -4,13 +4,13 @@ import { useRouter } from 'next/router';
 import { COLOR } from '../../constants';
 
 interface PropsType {
-    submit?: React.FC,
     hasData?: boolean,
 }
 
-export const PageHeader = ( { submit, hasData }: PropsType ) => {
+export const PageHeader = ( { hasData }: PropsType ) => {
     const router = useRouter();
     const [location, query] = router.asPath.split("/").splice(2);
+    
     return (
         <Container>
             <Back>
@@ -21,10 +21,19 @@ export const PageHeader = ( { submit, hasData }: PropsType ) => {
             <>
                 <Center>글쓰기</Center>
                 <Right>
-                    <WriteSubmit
-                        type="submit"
-                        hasData={hasData}
-                    >완료</WriteSubmit>
+                    { hasData ? (
+                    <WriteSubmit type="submit"
+                    hasData={hasData}>
+                        완료
+                    </WriteSubmit>
+                    ) : (
+                    <WriteSubmit type="button"
+                    onClick={() => {alert("제목과 내용은 필수 입력 사항입니다.")}}
+                    hasData={hasData}>
+                        완료
+                    </WriteSubmit>
+                    ) }
+                    
                 </Right>
             </>
             ) : null}
@@ -64,6 +73,7 @@ const Right = styled.li`
     text-align: right;
 `;
 const WriteSubmit = styled.button<{hasData: boolean|undefined}>`
+    cursor: ${(props) => props.hasData ? "pointer" : "not-allowed"};
     width: 100%;
     padding: 10px 19px;
     background-color: ${COLOR.main};
