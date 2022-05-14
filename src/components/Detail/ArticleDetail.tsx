@@ -65,8 +65,8 @@ export const ArticleDetail = ({
                     <ImageWrap>
                     <Images move={ImgPosition}>
                     { typeof(imageUrl) !== "string" ? (
-                        imageUrl.map((el) => 
-                        (<img src={el} />)
+                        imageUrl.map((value, index) => 
+                        (<img key={"img-" + index} src={value} />)
                     )
                     ) : <img src={imageUrl} /> }
                     </Images>
@@ -149,7 +149,7 @@ const ImageWrap = styled.div`
     margin: 0 -26px;
     `;
 const Images = styled.div<{move: number}>`
-    height: 200px;
+    height: 300px;
     white-space: nowrap;
     transform: ${(props) => 'translateX(' + props.move + 'px)'};
     transition: .5s all;
@@ -173,7 +173,7 @@ const ImagePositon = styled.div<{now: number}>`
         height: 11px;
         background-color: #fff;
         border-radius: 100%;
-        ${(props) => "&:nth-child(" + props.now + ")"} {
+        ${(props) => "&:nth-of-type(" + props.now + ")"} {
             background-color: ${COLOR.main};
         }
     }

@@ -31,6 +31,7 @@ export const ItemList = ({ selected }: propsType) => {
             {
             posts.map( (ele: any) => (
             <Item
+                key={"item"+ele.id}
                 categoryPk = {ele.categoryPk}
                 categoryName = {ele.categoryName}
                 id = {ele.id}
