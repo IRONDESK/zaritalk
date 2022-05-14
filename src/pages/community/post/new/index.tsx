@@ -22,6 +22,7 @@ export default function Write() {
     const [content, setContent] = useState("");
     const [files, setFiles] = useState<string[]>([]);
     const router = useRouter();
+    const now = new Date();
 
     const onLoadFile = (e: any) => {
         const file = URL.createObjectURL(e.target.files[0]);
@@ -56,7 +57,7 @@ export default function Write() {
             likeCount: 0,
             commentCount: 0,
             imageUrl: files,
-            writtenAt: Date.now(),
+            writtenAt: now.toISOString().split(".")[0],
             writerNickName: '글쓴이',
             writerProfileUrl: 'https://static.zaritalk.com/profiles/profile-48-img-man-39-39.png',
         });
@@ -101,8 +102,8 @@ export default function Write() {
                 <ImgPreviewWrap>
                     <ScrollContainer vertical={false}>
                         {files.map((value, index) => 
-                            <ImageContainer>
-                            <img src={value} key={"img"+index}/>
+                            <ImageContainer key={"img" + index}>
+                            <img src={value} />
                             <button
                                 type="button"
                                 onClick={() => DeleteFile(index)}
