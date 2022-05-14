@@ -15,7 +15,7 @@ export default function Detail() {
         .then(res => {
             setPost(res.data[0]);
         })
-    }, [])
+    }, [query])
 
     return (
     <>

@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { Children, useState } from "react";
+import axios from "axios";
+
+import { useState } from "react";
 import { COLOR } from "../../constants";
 import { MemberData } from "../../types/Article"
 
@@ -8,7 +10,7 @@ export const ArticleDetail = ({
     likeCount, commentCount, imageUrl, writtenAt, writerNickName, writerProfileUrl,
 }: MemberData) => {
     const [ImgPosition, setImgPosition] = useState<number>(0);
-
+    const [likeState, setLikeState] = useState(likeCount)
     const convertLocalDate = (value: string) => {
         const now: Date = new Date();
         const target: Date = new Date(value);
@@ -31,6 +33,14 @@ export const ArticleDetail = ({
         const target = e.target as HTMLSpanElement;
         setImgPosition(Number(target.dataset.order) * -360);
     };
+
+    const LikePlus = async () => {
+        const res = await axios.patch("http://localhost:8080/postdb/" + id, {
+            likeCount: likeCount + 1
+        });
+        setLikeState(res.data.likeCount);
+    };
+
     return (
     <Container>
         <Wrap>
@@ -68,8 +78,8 @@ export const ArticleDetail = ({
                 }
             </Article>
             <CountWrap>
-                <Count>
-                    <img src="/images/icon/like-thumb_white.svg" />{likeCount}
+                <Count onClick={LikePlus}>
+                    <img src="/images/icon/like-thumb_white.svg" />{likeState ? likeState : likeCount}
                 </Count>
                 <Count>
                     <img src="/images/icon/talk_white.svg" />{commentCount}
