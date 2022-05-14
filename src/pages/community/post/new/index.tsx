@@ -22,7 +22,8 @@ export default function Write() {
     const [content, setContent] = useState("");
     const [files, setFiles] = useState<string[]>([]);
     const router = useRouter();
-    const now = new Date();
+    const TimeOffset = new Date().getTimezoneOffset() * 60000;
+    const now = new Date(Date.now() - TimeOffset);
 
     const onLoadFile = (e: any) => {
         const file = URL.createObjectURL(e.target.files[0]);
