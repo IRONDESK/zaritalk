@@ -10,7 +10,8 @@ export const ArticleDetail = ({
     likeCount, commentCount, imageUrl, writtenAt, writerNickName, writerProfileUrl,
 }: MemberData) => {
     const [ImgPosition, setImgPosition] = useState<number>(0);
-    const [likeState, setLikeState] = useState(likeCount)
+    const [likeState, setLikeState] = useState(likeCount);
+    const [viewState, setViewState] = useState(viewCount);
     const convertLocalDate = (value: string) => {
         const now: Date = new Date();
         const target: Date = new Date(value);
@@ -40,6 +41,13 @@ export const ArticleDetail = ({
         });
         setLikeState(res.data.likeCount);
     };
+    const ViewPlus = async () => {
+        const res = await axios.patch("http://localhost:8080/postdb/" + id, {
+            viewCount: viewCount + 1
+        });
+        setViewState(res.data.likeCount);
+    };
+    ViewPlus();
 
     return (
     <Container>
