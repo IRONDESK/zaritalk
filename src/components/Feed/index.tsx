@@ -36,7 +36,7 @@ export const Feed = () => {
 };
 
 const Category = styled.ul`
-    margin: 20px 0 0 30px;
+    margin: 20px 0 10px 30px;
     white-space: nowrap;
 `;
 const Li = styled.li<{selected: Boolean}>`
