@@ -75,6 +75,7 @@ export const ArticleDetail = ({
                     { typeof(imageUrl) !== "string" && imageUrl.length > 1 ?
                         (imageUrl.map((v, i) => (
                             <span
+                                key={"pos-btn-" + i}
                                 onClick={ImgMove}
                                 data-order={i}
                             ></span>
