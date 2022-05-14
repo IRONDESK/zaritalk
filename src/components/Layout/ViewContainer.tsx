@@ -15,11 +15,10 @@ const Section = styled.section`
     top: 50%;
     width: 360px;
     height: 90vh;
-    border-radius: 15px;
-    border: 1px solid black;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
     transform: translate(-50%, -50%);
     overflow: hidden;
+    border-radius: 15px;
 `;
 
 
