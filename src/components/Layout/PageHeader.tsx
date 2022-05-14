@@ -5,12 +5,12 @@ import { COLOR } from '../../constants';
 
 interface PropsType {
     submit?: React.FC,
+    hasData?: boolean,
 }
 
-export const PageHeader = ( { submit }: PropsType ) => {
+export const PageHeader = ( { submit, hasData }: PropsType ) => {
     const router = useRouter();
     const [location, query] = router.asPath.split("/").splice(2);
-    console.log(location, query)
     return (
         <Container>
             <Back>
@@ -21,7 +21,10 @@ export const PageHeader = ( { submit }: PropsType ) => {
             <>
                 <Center>글쓰기</Center>
                 <Right>
-                    <WriteSubmit type="submit">완료</WriteSubmit>
+                    <WriteSubmit
+                        type="submit"
+                        hasData={hasData}
+                    >완료</WriteSubmit>
                 </Right>
             </>
             ) : null}
@@ -60,7 +63,7 @@ const Right = styled.li`
     flex: 1;
     text-align: right;
 `;
-const WriteSubmit = styled.button`
+const WriteSubmit = styled.button<{hasData: boolean|undefined}>`
     width: 100%;
     padding: 10px 19px;
     background-color: ${COLOR.main};
@@ -68,4 +71,5 @@ const WriteSubmit = styled.button`
     font-weight: 700;
     color: ${COLOR.white};
     border-radius: 8px;
+    opacity: ${(props) => props.hasData ? 1 : 0.3};
 `;
