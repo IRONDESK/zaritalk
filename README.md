@@ -1,34 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Zaritalk Community
 
-## Getting Started
+<div align="center">
+<img src="https://user-images.githubusercontent.com/87234410/168439590-4d79ad84-f48a-45ae-a4f4-177e118d56ec.png" width="300px">
+</div>
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
+### 개요
+* 간단한 CR(Create-Read) 커뮤니티 프로젝트 개발
+
+### 개발환경
+#### 기술 스택
+* 프론트엔드 : ReactJS with TypeScript, Next.js, @emotion
+* 백엔드 : json-server 활용 (아래 명령어로 서버 실행. 포트는 **8080으로 접속** 바랍니다.)
+```js
+npm install -g json-server
+npx json-server --watch database.json --port 8080
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 개발 참여
+* 개발자 : 손수철(개인)
+* 개발기간 : 2022년 5월 11일 ~ 15일 (5일 간)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 구현내용
+#### 공통
+* json-server로 가상의 Mock Server를 구현했습니다.
+  * json-server 활용을 위해, 제공된 DB에서 ``pk``를 ``id``로 수정했습니다.
+* HTTP Client 라이브러리인 Axios를 활용해, Server와 연결했습니다.
+* 모바일에 적합하게 디자인된 점을 고려해 일정 width값 이상에서는 모바일 스타일의 레이아웃을 적용했습니다.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+#### 리스트(피드)
+* ```http://localhost:3000/community/list```
+* 리스트는 최신순으로 정렬됩니다. 카테고리를 선택할 때도 최신순 정렬입니다.
+* 카테고리의 좌우 슬라이드는 ``react-indiana-drag-scroll``를 활용했습니다.
+* 유저의 편의를 고려하여 날짜 형식을 ``YYYY년 M월 D일 HH:MM:SS`` 형식으로 하였습니다.
+* 디자인에 없었던 '글보기' 버튼을 추가했습니다.
+* 디자인에 없었던 이미지 갯수 표시 요소를 추가했습니다. (+N 표시)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### 글 보기
+* ```http://localhost:3000/community/post/:id```
+* 글 내용에 링크가 있을 때 연결하는 조건은 구현하지 못했습니다. 자세한 내용은 아래 '수정 사안' 단락을 참고해주세요.
+* 좋아요를 누르면 좋아요 수가 1 증가합니다.
+* 글을 보면 조회수가 1 증가합니다.
+* 디자인에 없었던 복수 이미지의 슬라이드 기능을 추가했습니다.
 
-## Learn More
+#### 글 작성
+* ```http://localhost:3000/community/new```
+* 이미지 미리보기의 좌우 슬라이드는 ```react-indiana-drag-scroll```를 활용했습니다.
+* 제목과 내용이 입력될 때, 완료 버튼이 활성화됩니다.
 
-To learn more about Next.js, take a look at the following resources:
+### 스크린샷
+<div align="center">
+<img src="https://user-images.githubusercontent.com/87234410/168433037-3151476c-ab66-4263-bd7e-bd7eafddf334.png" width="300px">
+<img src="https://user-images.githubusercontent.com/87234410/168436122-b13c8155-945f-47de-bb2e-0420805b2344.png" width="300px">
+</div>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 수정 사안
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* src\components\Feed\Item.tsx
+  * 글 내의 링크를 찾아 ``<a href>`` 태그를 씌운 형태로 바꿨으나, 문자 형태로 출력되어 반영하지 않았습니다.
+![image](https://user-images.githubusercontent.com/87234410/168432290-4882cccb-f9ff-4880-ba4a-55655ef3b4a2.png)
+```typescript
+const urlReplace = /(http[s]?|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}/g;
+(중략)
+<Content>{content.replace(urlReplace, (_url) => {
+    return '<a href="' + _url + '">' + _url + '</a>';
+})}</Content>
+```
