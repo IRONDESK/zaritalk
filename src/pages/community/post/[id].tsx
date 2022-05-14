@@ -11,7 +11,7 @@ export default function Detail() {
     const [location, query] = router.asPath.split("/").splice(2);
     
     useEffect(() => {
-        axios.get("http://localhost:8080/postdb/" + query)
+        axios.get("http://localhost:8080/postdb/?id=" + query)
         .then(res => {
             setPost(res.data[0]);
         })

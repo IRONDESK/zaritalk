@@ -52,7 +52,7 @@ export const ItemList = ({ selected }: propsType) => {
 };
 
 const Container = styled.main`
-    padding-bottom: 120px;
+    padding-bottom: 150px;
     height: 100%;
     background-color: #E8E8E8;
     overflow-y: scroll;
