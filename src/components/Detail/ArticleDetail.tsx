@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { COLOR } from "../../constants";
 import { MemberData } from "../../types/Article"
 
@@ -48,7 +48,7 @@ export const ArticleDetail = ({
         });
         setViewState(res.data.likeCount);
     };
-    ViewPlus();
+    if (id) ViewPlus();
 
     const urlReplace = /(http[s]?|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}/g;
 
