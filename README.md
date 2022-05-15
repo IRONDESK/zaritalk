@@ -38,7 +38,7 @@ npx json-server --watch database.json --port 8080
 
 #### 글 보기
 * ```http://localhost:3000/community/post/:id```
-* 글 내용에 링크가 있을 때 연결하는 조건은 구현하지 못했습니다. 자세한 내용은 아래 '수정 사안' 단락을 참고해주세요.
+* ``dangerouslySetInnerHTML``과 정규표현식을 이용해, 글 내용에 URL이 있을 때 연결되도록 구현했습니다.
 * 좋아요를 누르면 좋아요 수가 1 증가합니다.
 * 글을 보면 조회수가 1 증가합니다.
 * 디자인에 없었던 복수 이미지의 슬라이드 기능을 추가했습니다.
@@ -54,16 +54,3 @@ npx json-server --watch database.json --port 8080
 <img src="https://user-images.githubusercontent.com/87234410/168436122-b13c8155-945f-47de-bb2e-0420805b2344.png" width="300px">
 </div>
 
-
-### 수정 사안
-
-* src\components\Feed\Item.tsx
-  * 글 내의 링크를 찾아 ``<a href>`` 태그를 씌운 형태로 바꿨으나, 문자 형태로 출력되어 반영하지 않았습니다.
-![image](https://user-images.githubusercontent.com/87234410/168432290-4882cccb-f9ff-4880-ba4a-55655ef3b4a2.png)
-```typescript
-const urlReplace = /(http[s]?|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}/g;
-(중략)
-<Content>{content.replace(urlReplace, (_url) => {
-    return '<a href="' + _url + '">' + _url + '</a>';
-})}</Content>
-```
