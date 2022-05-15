@@ -50,6 +50,8 @@ export const ArticleDetail = ({
     };
     ViewPlus();
 
+    const urlReplace = /(http[s]?|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}/g;
+
     return (
     <Container>
         <Wrap>
@@ -60,7 +62,12 @@ export const ArticleDetail = ({
             </Info>
             <Article>
                 <Title>{title}</Title>
-                <Content>{content}</Content>
+                <Content dangerouslySetInnerHTML={{ __html : 
+                    content?.replace(urlReplace, (_url) => {
+                        return '<a href="' + _url + '">' + _url + '</a>';
+                })
+                }}>
+                </Content>
                 {
                 imageUrl ? (
                     <ImageWrap>
@@ -153,6 +160,9 @@ const Content = styled.p`
     font-size: 14px;
     color: #7a7a7a;
     line-height: 22px;
+    a {
+        text-decoration: underline;
+    }
 `;
 const ImageWrap = styled.div`
     position: relative;

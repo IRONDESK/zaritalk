@@ -26,7 +26,6 @@ export const Item = ({
             return year+"년 "+month+"월 "+day+"일 "+time;
         }
     };
-    const urlReplace = /(http[s]?|ftp):\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}/g;
 
     return (
     <Container>
