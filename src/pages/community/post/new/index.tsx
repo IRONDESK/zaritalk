@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import axios from "axios";
-import ScrollContainer from "react-indiana-drag-scroll";
 
 import PageHeader from "../../../../components/Layout/PageHeader";
 import WriteForm from "../../../../components/Write/WriteForm";
@@ -25,20 +24,6 @@ export default function Write() {
     const router = useRouter();
     const TimeOffset = new Date().getTimezoneOffset() * 60000;
     const now = new Date(Date.now() - TimeOffset);
-
-    const onLoadFile = (e: any) => {
-        const file = URL.createObjectURL(e.target.files[0]);
-        if (files.length < 6) {
-            setFiles([...files, file]);
-        } else {
-            alert("최대 6개까지의 이미지만 첨부할 수 있습니다.")
-        }
-    }
-
-    const DeleteFile = (index: number) => {
-        const newFiles = files.filter((v, i) => i !== index);
-        setFiles([...newFiles]);
-    }
 
     useEffect(() => {
         if (title && content) {
